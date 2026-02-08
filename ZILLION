@@ -1,0 +1,141 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>For ZL 💘</title>
+
+<style>
+  body {
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff9aa2, #ffdae0);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card {
+    background: white;
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    max-width: 420px;
+    z-index: 10;
+  }
+
+  h1 {
+    color: #ff4d6d;
+    margin-bottom: 25px;
+  }
+
+  button {
+    border: none;
+    border-radius: 14px;
+    padding: 14px 22px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  #yesBtn {
+    background-color: #ff4d6d;
+    color: white;
+    margin-right: 10px;
+  }
+
+  #noBtn {
+    background-color: #d3d3d3;
+    color: black;
+  }
+
+  img {
+    margin-top: 25px;
+    max-width: 100%;
+    border-radius: 14px;
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <h1>ZL, will you be my Valentine? 💘</h1>
+  <button id="yesBtn">Yes 💖</button>
+  <button id="noBtn">No 🙃</button>
+</div>
+
+<script>
+  let yesSize = 18;
+  let noSize = 18;
+
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
+  const card = document.getElementById("card");
+
+  noBtn.addEventListener("click", () => {
+    yesSize += 2;
+    noSize -= 2;
+
+    yesBtn.style.fontSize = yesSize + "px";
+    noBtn.style.fontSize = noSize + "px";
+
+    if (noSize <= 8) {
+      noBtn.style.display = "none";
+    }
+  });
+
+  yesBtn.addEventListener("click", () => {
+    card.innerHTML = `
+      <h1>YAY ZL!! 💕🥰</h1>
+      <p>You just made my day 💖</p>
+      <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Cute couple celebration">
+    `;
+  });
+
+  // Create floating hearts
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    heart.style.fontSize = (14 + Math.random() * 20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
